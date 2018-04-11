@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue JS</title>
+</head>
+<style>
+    .done{
+        color: green;
+    }
+</style>
+<body>
+    <div id="vue-app">
+        <ul>
+            <li v-for="todo in todos">
+                <span :class="{done:todo.done}">{{todo.text}}</span>
+                <button v-on:click="editTodo(todo)"><i class="fa fa-pencil"></i></button>
+                <button v-on:click="doneTodo(todo)"><i class="fa fa-check"></i></button>
+                <button v-on:click="deleteTodo(todo)"><i class="fa fa-trash"></i></button>
+            </li> 
+        </ul>
+        <input type="text" v-model="newTodo">
+        <button v-if="!edit" v-on:click="addTodo()">Add Todo</button>
+        <button v-else v-on:click="updateTodo()">Update Todo</button>
+    </div>
+    
+    <script>
+        new Vue({
+            el:'#vue-app',
+            data:{
+                edit:false,
+                editIndex:-1,
+                todos:[
+                    {text:'JS',done:false}
+                ]
+            },
+            methods:{
+                addTodo: function(){
+                    this.todos.push({text:this.newTodo,done:false});
+                    this.newTodo ="";
+                },
+                doneTodo :function(todo){
+                    todo.done = !todo.done
+                },
+                deleteTodo: function(todo){
+                    var index = this.todos.indexOf(todo);
+                    this.todos.splice(index,1);
+                },
+                editTodo:function(todo){
+                    var index = this.todos.indexOf(todo);
+                    this.editIndex = index;
+                    this.edit = true;
+                    this.newTodo = todo.text;
+
+                    todo.text = 'editing..',
+                    todo.done = false;
+                },
+                updateTodo:function(){
+                    var index = this.editIndex;
+                    this.todos[index].text = this.newTodo;
+                    this.newTodo = "";
+                    this.edit = false;
+                    this.editIndex = -1;
+                }
+            }
+            
+        });
+    
+    </script>
+</body>
+</html>

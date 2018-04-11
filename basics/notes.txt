@@ -1,0 +1,12 @@
+ What is Vue JS
+ - A front-end framework
+ - Create JS drive web application
+ - Runs in the browser
+ - No need to make multiple server requests for pages
+
+ Why Vue.JS
+ - Very lean(16kb)
+ - Very run-time prefomance
+
+ Data-binding
+ - Using a directive called 'v-bind'
