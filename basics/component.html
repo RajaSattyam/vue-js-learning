@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue JS</title>
+</head>
+<style>
+    .user{
+        padding:10px;
+        background-color:white;
+        border:1px solid #ccc;
+    }
+</style>
+<body>
+    <div id="vue-app">
+        <p>Hello World</p>
+        <hr>
+        <app-user></app-user>
+    </div>
+    
+    <script>
+        Vue.component('app-user',{
+            data: function(){
+                return {
+                    users:[
+                        {username:"Ashu"},
+                        {username:"Mishra"},
+                        {username:"Ashutosh"}
+                    ]
+                };
+            },
+            template:`<div><div class="user" v-for="user in users">
+                            <p>Username : {{ user.username }}</p>
+                        </div></div>`
+        });
+        new Vue({
+            el:'#vue-app',
+            data:{
+                username:'Ashu',
+               
+            },
+            
+            
+        });
+    
+    </script>
+</body>
+</html>
